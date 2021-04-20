@@ -3,6 +3,7 @@
 #include"_Canvas.h"
 #include"Ball.h"
 #include <windows.h>
+#include"Function.h"
 using namespace std;
 
 int main() {
@@ -12,44 +13,30 @@ int main() {
 
 	int x = 10;
 	int y = 10;
+	uint64_t last_time = current_ms();
 	while (is_running) {
 		int key = 0;
-		if (_kbhit()) {
-			key = _getch();
-		}
-		switch (key)
-		{
-		case 27://esc
-			is_running = false;
+		if (GetAsyncKeyState(0x41)) {//a,A
+			ball.move_left();
+		}if (GetAsyncKeyState(0x53)) {//s,S
 			
-			break;
-		case 'a':case'A':
-			canvas.draw_char('.', x, y);
-			x--;
-			break;
-		case 's':case'S':
-			canvas.draw_char('.', x, y);
-			y++;
-			break;
-		case 'd':case'D':
-			canvas.draw_char('.', x, y);
-			x++;
-			break;
-		case 'w':case'W':
-			canvas.draw_char('.', x, y);
-			y--;
-			break;
-		case ' ':
-			ball.jump();
-			break;
-		default:
-			break;
 		}
-		ball.update();
-		ball.draw(canvas);
-		canvas.draw_char('O', x, y);
-		canvas.draw();
-		Sleep(10);
+		if (GetAsyncKeyState(0x44)) {//d,D
+			ball.move_right();
+		}
+		if (GetAsyncKeyState(0x57)) {//w,W
+			
+		}
+		if (GetAsyncKeyState(VK_SPACE)) {
+			ball.jump();
+		}
+		if (current_ms() - last_time > 40) {
+			ball.update();
+			ball.draw(canvas);
+			canvas.draw_char('O', x, y);
+			canvas.draw();
+			last_time = current_ms();
+		}
 	}
 	return 0;
 }
