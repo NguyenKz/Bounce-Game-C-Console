@@ -9,7 +9,7 @@ Ball::Ball()
 	this->time_check_move = -1;
 }
 
-void Ball::update()
+void Ball::update(Map& map)
 {
 	this->_x = this->x;
 	this->_y = this->y;
@@ -45,8 +45,8 @@ void Ball::update()
 	if (this->x < 0) {
 		this->x = 0;
 	}
-	if (this->x > 19) {
-		this->x = 19;
+	if (this->x > map.get_w()-1) {
+		this->x = map.get_w()-1;
 	}
 	
 	this->is_move = false;
@@ -57,8 +57,8 @@ void Ball::update()
 	this->v_jump = this->v_jump + G * time_d;
 	double __y = this->v_jump * time_d;
 	this->y += __y;
-	if (this->y > 19) {
-		this->y = 19;
+	if (this->y > map.get_h()-1) {
+		this->y = map.get_h()-1;
 	/*	this->v = -this->v*0.7;
 		if (__y < 0.5) {
 			this->v = 0;
@@ -72,7 +72,7 @@ void Ball::update()
 
 void Ball::draw(_Canvas& canvas)
 {
-	canvas.draw_char('.', this->_x, this->_y);
+	canvas.draw_empty( this->_x, this->_y);
 	canvas.draw_char('#', this->x, this->y);
 	gotoxy(22, 1);
 	cout << "Toa do: "<<this->x<<"  "<<this->y<<"   ";

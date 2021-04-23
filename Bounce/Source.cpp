@@ -1,14 +1,16 @@
 #include<conio.h>
-
+#include"Map.h"
 #include"_Canvas.h"
-#include"Ball.h"
+#include"Ball_Object.h"
 #include <windows.h>
 #include"Function.h"
 using namespace std;
 
 int main() {
-	_Canvas canvas(20, 20);
-	Ball ball;
+	Map map;
+	_Canvas canvas(map.get_w(), map.get_h());
+	Ball_Object ball(20,10);
+	
 	bool is_running = true;
 
 	int x = 10;
@@ -31,9 +33,11 @@ int main() {
 			ball.jump();
 		}
 		if (current_ms() - last_time > 40) {
-			ball.update();
+			ball.update(map);
+			canvas.update(ball.get_x(), ball.get_y(),map.get_w(),map.get_h());
+			map.draw(canvas);
 			ball.draw(canvas);
-			canvas.draw_char('O', x, y);
+
 			canvas.draw();
 			last_time = current_ms();
 		}

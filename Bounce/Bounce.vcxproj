@@ -140,13 +140,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Ball_Object.cpp" />
+    <ClCompile Include="Block_Map_Object.cpp" />
+    <ClCompile Include="Unit_Block.cpp" />
     <ClCompile Include="Function.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Game_Object.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="_Canvas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Ball_Object.h" />
+    <ClInclude Include="Block_Map_Object.h" />
+    <ClInclude Include="Unit_Block.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Game_Object.h" />
     <ClInclude Include="_Canvas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
